@@ -237,15 +237,14 @@ static void fill_dlp_l_collocation_near_laplacebem3d(const uint *ridx,
 
 void fill_nearfield_collocation_bem3d(pcbem3d bem, pamatrix A)
 {
-	bem->kernels->kernel_col(NULL, bem->gr->x, bem, true, A);
+	bem->kernels->kernel_col(NULL, bem->gr->x, bem, A);
 }
 
 void assemble_fundamental_collocation_row_bem3d(const uint *idx,
-												const real (*Z)[3], pcbem3d bem, bool trans, pamatrix A)
+												const real (*Z)[3], pcbem3d bem, pamatrix A)
 {
 	real(*X)[3] = (real(*)[3])allocreal(3 * A->rows);
 	uint i, ii;
-	(void)trans;
 	for (i = 0; i < A->rows; ++i)
 	{
 		ii = (idx != NULL ? idx[i] : i);
@@ -258,9 +257,8 @@ void assemble_fundamental_collocation_row_bem3d(const uint *idx,
 }
 
 void assemble_dnz_fundamental_collocation_row_bem3d(const uint *idx,
-													const real (*Z)[3], const real (*N)[3], pcbem3d bem, bool trans, pamatrix A)
+													const real (*Z)[3], const real (*N)[3], pcbem3d bem, pamatrix A)
 {
-	(void)trans;
 	real(*X)[3] = (real(*)[3])allocreal(3 * A->rows);
 	uint i, ii;
 
