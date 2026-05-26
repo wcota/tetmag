@@ -52,7 +52,7 @@ endif()
 include(ExternalProject)
 ExternalProject_Add(h2lib
   GIT_REPOSITORY https://github.com/H2Lib/H2Lib.git
-  GIT_TAG collocation
+  GIT_TAG master
   UPDATE_DISCONNECTED true
   SOURCE_DIR ${EXTDIR}/h2lib
   CONFIGURE_COMMAND ${H2CONFIG}
